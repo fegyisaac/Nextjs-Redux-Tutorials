@@ -1,8 +1,10 @@
+"use client";
+
 import { createSlice } from "@reduxjs/toolkit";
 
 type initialStateProps = {
-  value: number,
-}
+  value: number;
+};
 
 const initialState: initialStateProps = {
   value: 10,
@@ -13,10 +15,10 @@ const CounterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      
+      state.value += 1;
     },
-    decrement: (state) => {
-
+    decrement: (state, actions) => {
+      state.value += actions.payload;
     },
     reset: () => {
       return initialState;
@@ -24,7 +26,6 @@ const CounterSlice = createSlice({
   },
 });
 
-export const { increment, decrement, reset } =
-  CounterSlice.actions;
+export const { increment, decrement, reset } = CounterSlice.actions;
 
 export default CounterSlice.reducer;
