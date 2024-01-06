@@ -2,8 +2,10 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      hello
+    <main>
+      <h1 className="w-full h-screen grid place-items-center text-5xl">
+        Welcome to Next + Redux Projects
+      </h1>
     </main>
   )
 }
