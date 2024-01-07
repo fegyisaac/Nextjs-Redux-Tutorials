@@ -27,11 +27,11 @@ const Shop = () => {
   ];
 
   return (
-    <div id="grid">
+    <div className="flex justify-between gap-4">
       {data.map((item, i) => (
         <div key={i} className="w-full bg-slate-700 rounded-md p-[1rem]">
-          <img className="w-[70%] mx-auto" src={item.image_url} alt="img" />
-          <div className="py-4">
+          <img className="w-[70%] min-h-[220px] mx-auto" src={item.image_url} alt="img" />
+          <div className="py-4 text-white flex justify-between ">
             <p>{item.title}</p>
             <p>${item.price}</p>
           </div>
