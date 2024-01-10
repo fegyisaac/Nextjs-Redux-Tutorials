@@ -31,7 +31,7 @@ const initialState: initialStateProps = {
 }; 
 
 const CatalogueSlice = createSlice({
-  name: "cataloging",
+  name: "catalogue",
   initialState,
   reducers: {
     // addCart: (state, action) => {
