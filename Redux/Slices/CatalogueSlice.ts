@@ -12,11 +12,19 @@ type initialStateProps = {
     name: string;
     price: number;
   }[];
+  catalogueCartItem: {
+    id: number;
+    image: StaticImageData;
+    name: string;
+    price: number;
+    cartQuantity: number;
+  }[];
 };
 
 const initialState: initialStateProps = {
   quantity: 0,
-  catalogueCart: data
+  catalogueCart: data,
+  catalogueCartItem: [],
 };
 
 const CatalogueSlice = createSlice({
@@ -33,14 +41,24 @@ const CatalogueSlice = createSlice({
     // },
     addToCart: (state, action) => {
       // state.quantity = state.catalogueCart
-    }
+
+      const itemIndex = state.catalogueCartItem.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex >= 0) {
+        state.catalogueCartItem[itemIndex].cartQuantity += 1;
+      } else {
+        const productCount = { ...action.payload, cartQuantity: 1 };
+        state.catalogueCartItem.push(productCount);
+      }
+    },
   },
-  // extraReducers: 
+  // extraReducers:
 });
 
 export const {
   //  addCart, removeCard
-  addToCart
+  addToCart,
 } = CatalogueSlice.actions;
 
 export default CatalogueSlice.reducer;

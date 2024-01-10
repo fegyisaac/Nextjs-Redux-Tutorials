@@ -1,25 +1,17 @@
 'use client'
-
-import CunrrencyFormatter from "@/utilities/CunrrencyFormatter";
-import Image, { StaticImageData } from "next/image";
-import CartActions from "./CartActions";
 import { useAppSelector } from "@/Redux/Store";
+import CunrrencyFormatter from "@/utilities/CunrrencyFormatter";
+import Image from "next/image";
+// import { useSelector } from "react-redux";
 
-// type CatalogueProps = {
-//   id: number;
-//   name: string;
-//   image: StaticImageData;
-//   price: number;
-// };
+const OneLove = () => {
+  // const info = useAppSelector((state) => state.catalogue.catalogueCartItem)
+  const data = useAppSelector((state) => state.catalogue.catalogueCartItem);
+  // const data = useAppSelector((state) => state.catalogue.catalogueCart);
 
-const Catalogues = () => {
-
-
-  const data = useAppSelector(state => state.catalogue.catalogueCart);
 
   return (
-    <div className="flex justify-evenly gap-3 items-center flex-wrap mb-5">
-    
+    <div className="bg-black p-3">
       {data.map((item) => (
         <div
           key={item.id}
@@ -34,11 +26,11 @@ const Catalogues = () => {
               {CunrrencyFormatter(item.price)}
             </span>
           </div>
-          <CartActions />
         </div>
       ))}
-  </div>
+      {/* {`${data}`} */}
+    </div>
   );
 };
 
-export default Catalogues;
+export default OneLove;

@@ -13,6 +13,7 @@ export const store = configureStore({
     catalogue: CatalogueReducer,
   },
 });
+// PayloadAction<string>
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
