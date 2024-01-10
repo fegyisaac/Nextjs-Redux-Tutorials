@@ -1,36 +1,17 @@
+// 'use client'
+
+import { useAppSelector } from "@/Redux/Store";
 import Catalogues from "@/components/Catalogues";
 import doe from "@/public/doe.jpg";
 import mark from "@/public/mark.jpg";
 import shelve from "@/public/shelve.jpg";
 import zeke from "@/public/zeke.jpg";
+import { useSelector } from "react-redux";
 
 const TypeShop = () => {
-  const data = [
-    {
-      id: 1,
-      image: mark,
-      name: "Books",
-      price: 10.98,
-    },
-    {
-      id: 2,
-      image: doe,
-      name: "Car",
-      price: 109.0,
-    },
-    {
-      id: 3,
-      image: shelve,
-      name: "Chalkboard",
-      price: 2.9,
-    },
-    {
-      id: 4,
-      image: zeke,
-      name: "Duster",
-      price: 1008.9,
-    },
-  ];
+
+  const data = useAppSelector((state) => state.catalogue.catalogueCart)
+
   return (
     <div className="px-3 text-white">
       <div>STORE</div>
