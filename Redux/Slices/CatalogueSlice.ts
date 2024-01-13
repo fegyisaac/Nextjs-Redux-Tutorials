@@ -32,6 +32,24 @@ const CatalogueSlice = createSlice({
       state.catalogueCartItem = state.catalogueCartItem.filter(
         (item) => item.id !== action.payload.id
       );
+      state.amount -= 1;
+    },
+
+    decreaseCartQty: (state, action) => {
+      const isExist = state.catalogueCart.find(
+        (item) => item.id == action.payload?.id
+      );
+      const itemIndex = state.catalogueCartItem.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (isExist && state.catalogueCartItem[itemIndex].cartQuantity != 1) {
+        state.catalogueCartItem[itemIndex].cartQuantity -= 1;
+      } else {
+        state.catalogueCartItem = state.catalogueCartItem.filter(
+          (item) => item.id !== action.payload.id
+        );
+        state.amount -= 1;
+      }
     },
 
     clearCart: (state) => {
@@ -41,6 +59,7 @@ const CatalogueSlice = createSlice({
   },
 });
 
-export const { addToCart, clearCart, removeCart } = CatalogueSlice.actions;
+export const { addToCart, clearCart, removeCart, decreaseCartQty } =
+  CatalogueSlice.actions;
 
 export default CatalogueSlice.reducer;

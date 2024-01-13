@@ -1,5 +1,5 @@
 "use client";
-import { addToCart, clearCart, removeCart } from "@/Redux/Slices/CatalogueSlice";
+import { addToCart, clearCart, decreaseCartQty, removeCart } from "@/Redux/Slices/CatalogueSlice";
 import { useAppSelector } from "@/Redux/Store";
 import { FormatCurrency } from "@/utilities/FormatCurrency";
 import Image from "next/image";
@@ -45,7 +45,7 @@ const ShoppingMenu = () => {
                           Remove
                         </button>
                         <div>
-                          <button className="w-7 h-7 bg-blue-700 rounded-sm">
+                          <button className="w-7 h-7 bg-blue-700 rounded-sm" onClick={() => dispatch(decreaseCartQty(item))}>
                             -
                           </button>
                           <span>{` ${item.cartQuantity} in Cart `}</span>
