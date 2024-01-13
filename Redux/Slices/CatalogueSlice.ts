@@ -28,6 +28,11 @@ const CatalogueSlice = createSlice({
         state.amount += 1;
       }
     },
+    removeCart: (state, action) => {
+      state.catalogueCartItem = state.catalogueCartItem.filter(
+        (item) => item.id !== action.payload.id
+      );
+    },
 
     clearCart: (state) => {
       state.catalogueCartItem = [];
@@ -36,6 +41,6 @@ const CatalogueSlice = createSlice({
   },
 });
 
-export const { addToCart, clearCart } = CatalogueSlice.actions;
+export const { addToCart, clearCart, removeCart } = CatalogueSlice.actions;
 
 export default CatalogueSlice.reducer;

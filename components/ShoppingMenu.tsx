@@ -1,5 +1,5 @@
 "use client";
-import { addToCart, clearCart } from "@/Redux/Slices/CatalogueSlice";
+import { addToCart, clearCart, removeCart } from "@/Redux/Slices/CatalogueSlice";
 import { useAppSelector } from "@/Redux/Store";
 import { FormatCurrency } from "@/utilities/FormatCurrency";
 import Image from "next/image";
@@ -41,7 +41,7 @@ const ShoppingMenu = () => {
                       </div>
 
                       <div className="flex justify-between items-center mt-3 gap-6">
-                        <button className="bg-red-600 text-white text-[13px] py-1 px-2 rounded-md">
+                        <button className="bg-red-600 text-white text-[13px] py-1 px-2 rounded-md" onClick={() => dispatch(removeCart(item))}>
                           Remove
                         </button>
                         <div>
