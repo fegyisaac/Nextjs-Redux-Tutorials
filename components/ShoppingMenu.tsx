@@ -60,10 +60,10 @@ const ShoppingMenu = () => {
                     </div>
                   ))}
                 </div>
-                <footer className="flex flex-col gap-2 absolute bottom-0 w-full my-2">
+                <footer className="flex flex-col gap-2 absolute bottom-0 w-full my-2 bg-black text-white">
                   <div className="flex justify-between">
                     <h4>Total</h4>
-                    <div>{FormatCurrency(9024987)}</div>
+                    <div>{FormatCurrency(2100)}</div>
                   </div>
                   <button
                     onClick={() => dispatch(clearCart())}
