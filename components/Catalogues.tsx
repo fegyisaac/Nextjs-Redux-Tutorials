@@ -1,25 +1,16 @@
-'use client'
+"use client";
 
-import CunrrencyFormatter from "@/utilities/CunrrencyFormatter";
-import Image, { StaticImageData } from "next/image";
-import CartActions from "./CartActions";
+import Image from "next/image";
 import { useAppSelector } from "@/Redux/Store";
-
-// type CatalogueProps = {
-//   id: number;
-//   name: string;
-//   image: StaticImageData;
-//   price: number;
-// };
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/Redux/Slices/CatalogueSlice";
+import { FormatCurrency } from "@/utilities/FormatCurrency";
 
 const Catalogues = () => {
-
-
-  const data = useAppSelector(state => state.catalogue.catalogueCart);
-
+  const data = useAppSelector((state) => state.catalogue.catalogueCart);
+  const dispatch = useDispatch();
   return (
     <div className="flex justify-evenly gap-3 items-center flex-wrap mb-5">
-    
       {data.map((item) => (
         <div
           key={item.id}
@@ -31,13 +22,18 @@ const Catalogues = () => {
           <div className="flex justify-between items-center my-3 ">
             <span className="text-base font-medium">{item.name}</span>
             <span className="ml-3 text-slate-400">
-              {CunrrencyFormatter(item.price)}
+              {FormatCurrency(item.price)}
             </span>
           </div>
-          <CartActions />
+          <button
+            className="bg-green-500 w-full py-1 rounded-md"
+            onClick={() => dispatch(addToCart(item))}
+          >
+            + Add to Cart
+          </button>
         </div>
       ))}
-  </div>
+    </div>
   );
 };
 

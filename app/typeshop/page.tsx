@@ -1,20 +1,19 @@
 // 'use client'
 
 import Catalogues from "@/components/Catalogues";
-import OneLove from "@/components/Onelove";
+import ShoppingMenu from "@/components/ShoppingMenu";
 
 const TypeShop = () => {
   return (
-    <div className="px-3 text-white">
+    <div className="px-3 text-white relative">
       <div>STORE</div>
+      <ShoppingMenu />
 
       <div>
         <div>
           <Catalogues />
         </div>
       </div>
-
-      <OneLove />
     </div>
   );
 };

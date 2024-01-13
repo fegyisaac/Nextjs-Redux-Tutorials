@@ -5,13 +5,16 @@ import CounterReducers from "./Slices/CounterSlice";
 import CatalogueReducer from "./Slices/CatalogueSlice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import ShoppingReducers from "./Slices/ShoppingSlice";
+import ModalReducers from "./Slices/ModalSlice";
 
 export const store = configureStore({
   reducer: {
     counter: CounterReducers,
     shop: ShoppingReducers,
     catalogue: CatalogueReducer,
+    modal: ModalReducers,
   },
+  
 });
 // PayloadAction<string>
 

@@ -1,64 +1,41 @@
 "use client";
 
-import { data } from "@/components/constant";
 import { createSlice } from "@reduxjs/toolkit";
-import { StaticImageData } from "next/image";
-
-type initialStateProps = {
-  quantity: number;
-  catalogueCart: {
-    id: number;
-    image: StaticImageData;
-    name: string;
-    price: number;
-  }[];
-  catalogueCartItem: {
-    id: number;
-    image: StaticImageData;
-    name: string;
-    price: number;
-    cartQuantity: number;
-  }[];
-};
+import { data } from "@/components/constant";
+import { initialStateProps } from "@/components/types";
 
 const initialState: initialStateProps = {
-  quantity: 0,
+  amount: 0,
   catalogueCart: data,
   catalogueCartItem: [],
+  total: 0,
 };
 
 const CatalogueSlice = createSlice({
   name: "catalogue",
   initialState,
   reducers: {
-    // addCart: (state, action) => {
-    //   state.shoppingCart.push(action.payload);
-    // },
-    // removeCard: (state, action) => {
-    //   state.shoppingCart = state.shoppingCart.filter(
-    //     (item) => item.id !== action.payload.id
-    //   );
-    // },
     addToCart: (state, action) => {
-      // state.quantity = state.catalogueCart
-
       const itemIndex = state.catalogueCartItem.findIndex(
         (item) => item.id === action.payload.id
       );
+
       if (itemIndex >= 0) {
         state.catalogueCartItem[itemIndex].cartQuantity += 1;
       } else {
-        const productCount = { ...action.payload, cartQuantity: 1 };
-        state.catalogueCartItem.push(productCount);
+        const temp = { ...action.payload, cartQuantity: 1 };
+        state.catalogueCartItem?.push(temp);
+        state.amount += 1;
       }
     },
+
+    clearCart: (state) => {
+      state.catalogueCartItem = [];
+      state.amount = 0;
+    },
   },
-  // extraReducers:
 });
 
-export const {
-  //  addCart, removeCard
-  addToCart,
-} = CatalogueSlice.actions;
+export const { addToCart, clearCart } = CatalogueSlice.actions;
 
 export default CatalogueSlice.reducer;
