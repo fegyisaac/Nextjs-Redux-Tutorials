@@ -7,7 +7,8 @@ import { useDispatch } from "react-redux";
 
 const ShoppingMenu = () => {
   const modal = useAppSelector((state) => state.modal.isOpen);
-  let amount = 3;
+  const amount = useAppSelector(state => state.catalogue.amount);
+  const total = useAppSelector(state => state.catalogue.total)
   const dispatch = useDispatch();
 
   const data = useAppSelector((state) => state.catalogue.catalogueCartItem);
@@ -63,7 +64,7 @@ const ShoppingMenu = () => {
                 <footer className="flex flex-col gap-2 absolute bottom-0 w-full my-2 bg-black text-white">
                   <div className="flex justify-between">
                     <h4>Total</h4>
-                    <div>{FormatCurrency(2100)}</div>
+                    <div>{FormatCurrency(total)}</div>
                   </div>
                   <button
                     onClick={() => dispatch(clearCart())}
