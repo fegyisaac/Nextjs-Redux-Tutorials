@@ -30,7 +30,7 @@ const LogIn = () => {
             <h4 className="text-[12px] text-right mt-6">
               Don't have an account?
               <Link href={"/signup"}>
-                <span className="underline"> Register</span>
+                <span className="underline">Register</span>
               </Link>
             </h4>
           </form>
