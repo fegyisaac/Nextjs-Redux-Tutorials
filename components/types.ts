@@ -26,3 +26,12 @@ export type idProps = {
   name: string;
   price: number;
 };
+
+export   type FormValue = {
+  firstname: string;
+  surname: string;
+  username: string;
+  email: string;
+  password: any;
+  "confirm password": any;
+};

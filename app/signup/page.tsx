@@ -3,19 +3,11 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { FormValue } from "@/components/types";
 
 const SignUp = () => {
   const { register, control, handleSubmit, formState } = useForm<FormValue>();
   const { errors } = formState;
-
-  type FormValue = {
-    firstname: string;
-    surname: string;
-    username: string;
-    email: string;
-    password: any;
-    "confirm password": any;
-  };
 
   const onSubmit = (data: FormValue) => {
     console.log("submitted", data);
@@ -55,6 +47,8 @@ const SignUp = () => {
               />
             </div>
             {/* ========================== */}
+
+
             <input
               type="text"
               {...register("username", {
@@ -66,6 +60,8 @@ const SignUp = () => {
             <p className="text-red-500 font-medium text-[13px]">
               {errors.username?.message}
             </p>
+
+
             <input
               type="text"
               {...register("email", {
@@ -88,6 +84,9 @@ const SignUp = () => {
             <p className="text-red-500 font-medium text-[13px]">
               {errors.email?.message}
             </p>
+
+
+
 
             <input
               type="password"
