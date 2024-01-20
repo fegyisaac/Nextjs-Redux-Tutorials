@@ -13,8 +13,8 @@ const signUpSchema = z
     surname: z.string().min(1, "surname is required"),
     username: z
       .string()
-      .min(4, "username must contain at least 4 chars")
-      .max(12, "username must contain at most 12 chars")
+      .min(4, "username must contain at least 4 character(s)")
+      .max(12, "username must contain at most 12 character(s)")
       .regex(
         /^[a-zA-Z0-9_]+$/,
         "The username must contain only letters, numbers and underscore (_)"
