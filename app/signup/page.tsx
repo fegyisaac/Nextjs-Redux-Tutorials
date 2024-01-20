@@ -9,10 +9,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const signUpSchema = z
   .object({
-    firstname: z.string(),
-    surname: z.string(),
-    username: z.string(),
-    email: z.string().email(),
+    firstname: z.string().min(1, "firstname is required"),
+    surname: z.string().min(1, "surname is required"),
+    username: z
+      .string()
+      .min(4, "username must contain at least 4 chars")
+      .max(12, "username must contain at most 12 chars")
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "The username must contain only letters, numbers and underscore (_)"
+      ),
+    email: z.string().email({ message: "Invalid Email ID" }),
     password: z.string().min(8, "minimum of 8 character(s)"),
     confirmPassword: z.string(),
   })
@@ -40,7 +47,7 @@ const SignUp = () => {
           <h2 className="text-3xl mb-4">SignUp</h2>
           <p className="mb-4">Create your account.</p>
           <form action="#" onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-5 w-full">
               {/* ==================== */}
               <div>
                 <input
@@ -53,13 +60,17 @@ const SignUp = () => {
                   {errors.firstname?.message}
                 </p>
               </div>
-
-              <input
-                type="text"
-                {...register("surname")}
-                placeholder="Surname"
-                className="border border-gray-500 py-1 px-2 rounded-md"
-              />
+              <div>
+                <input
+                  type="text"
+                  {...register("surname")}
+                  placeholder="Surname"
+                  className="border border-gray-500 py-1 px-2 rounded-md"
+                />
+                <p className="text-red-500 font-medium text-[13px]">
+                  {errors.surname?.message}
+                </p>
+              </div>
             </div>
             {/* ========================== */}
 
