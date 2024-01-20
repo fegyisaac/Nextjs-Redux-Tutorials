@@ -33,5 +33,5 @@ export   type FormValue = {
   username: string;
   email: string;
   password: any;
-  "confirm password": any;
+  confirmPassword: any;
 };

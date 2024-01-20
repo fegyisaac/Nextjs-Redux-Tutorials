@@ -26,8 +26,18 @@ const Header = () => {
           <Link href="/typeshop">Typeshop</Link>
         </li>
       </ul>
-      <div className="relative text-blue-500">
-        <button onClick={() => dispatch(toggleModal())}>
+      <div className="text-blue-500 flex justify-between gap-4 items-center">
+        <p>
+          <Link href={"/login"}>
+            <span className="underline">login</span>
+          </Link>
+        </p>
+        <p>
+          <Link href={"/signup"}>
+            <span className="underline">Sign Up</span>
+          </Link>
+        </p>
+        <button onClick={() => dispatch(toggleModal())} className="relative">
           <CartIcon />
           <span className="absolute -right-1 -top-1 text-black bg-pink-400 px-1 rounded-full">
             {amount}
