@@ -12,6 +12,10 @@ const ShoppingMenu = () => {
   const dispatch = useDispatch();
 
   const data = useAppSelector((state) => state.catalogue.catalogueCartItem);
+
+  // data.map(item => {
+  //   // total = item.cartQuantity * item.price;
+  // })
   return (
     <div>
       {modal ? (

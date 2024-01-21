@@ -21,6 +21,10 @@ const signUpSchema = z
       ),
     email: z.string().email({ message: "Invalid Email ID" }),
     password: z.string().min(8, "minimum of 8 character(s)"),
+    // .regex(
+    //   // '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
+    //   "user"
+    // ),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -46,8 +50,8 @@ const SignUp = () => {
         <div className="w-[490px] mx-auto px-5">
           <h2 className="text-3xl mb-4">SignUp</h2>
           <p className="mb-4">Create your account.</p>
-          <form action="#" onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid grid-cols-2 gap-5 w-full">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex justify-between items-center gap-2 w-full">
               {/* ==================== */}
               <div>
                 <input

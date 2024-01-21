@@ -27,12 +27,18 @@ const CatalogueSlice = createSlice({
         state.catalogueCartItem?.push(temp);
         state.amount += 1;
       }
+
+      state.catalogueCartItem.map(item => {
+        state.total = item.cartQuantity * item.price
+      })
     },
     removeCart: (state, action) => {
       state.catalogueCartItem = state.catalogueCartItem.filter(
         (item) => item.id !== action.payload.id
       );
       state.amount -= 1;
+
+     
     },
 
     decreaseCartQty: (state, action) => {
@@ -50,6 +56,10 @@ const CatalogueSlice = createSlice({
         );
         state.amount -= 1;
       }
+
+      state.catalogueCartItem.map(item => {
+        state.total = item.cartQuantity * item.price
+      })
     },
 
     clearCart: (state) => {
