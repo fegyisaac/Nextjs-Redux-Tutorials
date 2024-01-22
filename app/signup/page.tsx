@@ -94,7 +94,7 @@ const SignUp = () => {
                   type="text"
                   {...register("firstname")}
                   placeholder="Firstname"
-                  className="border border-gray-500 py-1 px-2 rounded-md"
+                  className="border border-gray-500 py-1 w-[220px] px-2 rounded-md"
                 />
                 <p className="text-red-500 font-medium text-[13px]">
                   {errors.firstname?.message}
@@ -105,7 +105,7 @@ const SignUp = () => {
                   type="text"
                   {...register("surname")}
                   placeholder="Surname"
-                  className="border border-gray-500 py-1 px-2 rounded-md"
+                  className="border border-gray-500 py-1 w-[220px] px-2 rounded-md"
                 />
                 <p className="text-red-500 font-medium text-[13px]">
                   {errors.surname?.message}

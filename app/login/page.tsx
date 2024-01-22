@@ -50,12 +50,11 @@ const LogIn = () => {
                 {errors.password?.message}
               </p>
             </div>
+          
 
-            <div className="mt-5">
-              <button className="w-full bg-purple-500 py-3 text-center text-white">
-                LOG IN
-              </button>
-            </div>
+            <button className="w-full bg-purple-500 mt-5 py-3 text-center text-white">
+              LOG IN
+            </button>
             <h4 className="text-[12px] text-right mt-6">
               Don't have an account?
               <Link href={"/signup"}>
