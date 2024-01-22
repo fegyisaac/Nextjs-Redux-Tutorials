@@ -9,7 +9,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const signUpSchema = z
   .object({
-    firstname: z.string().min(1, "firstname is required"),
+    firstname: z
+      .string()
+      .min(1, "Minimum 3 and maximum 64 characters are allowed in username."),
     surname: z.string().min(1, "surname is required"),
     username: z
       .string()
@@ -19,11 +21,13 @@ const signUpSchema = z
         /^[a-zA-Z0-9_]+$/,
         "The username must contain only letters, numbers and underscore (_)"
       ),
-    email: z.string().email({ message: "Invalid Email ID" }),
-    password: z.string().min(8, "minimum of 8 character(s)"),
+    email: z.string().email({
+      message: "Please enter a valid email address, like: yourname@email.com",
+    }),
+    password: z.string().min(8, "Use a password that is at least 8 characters"),
     // .regex(
     //   // '^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$',
-    //   "user"
+    //   "user" – it helps keep your account secure.
     // ),
     confirmPassword: z.string(),
   })
@@ -35,13 +39,45 @@ const signUpSchema = z
 type formFields = z.infer<typeof signUpSchema>;
 
 const SignUp = () => {
-  const { register, control, handleSubmit, formState } = useForm<formFields>({
-    resolver: zodResolver(signUpSchema),
-  });
+  const { register, control, handleSubmit, formState, reset } =
+    useForm<formFields>({
+      resolver: zodResolver(signUpSchema),
+    });
   const { errors } = formState;
 
-  const onSubmit: SubmitHandler<formFields> = (data) => {
+  const onSubmit: SubmitHandler<formFields> = async (data) => {
     console.log("submitted", data);
+
+    const firstname = data.firstname;
+    const surname = data.surname;
+    const username = data.username;
+    const email = data.email;
+    const password = data.password;
+    const confirmPassword = data.confirmPassword;
+    try {
+      const res = await fetch("api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          surname,
+          username,
+          email,
+          password,
+          confirmPassword,
+        }),
+      });
+
+      if (res.ok) {
+        reset();
+      } else {
+        console.log("user faile");
+      }
+    } catch (error) {
+      console.log("failed");
+    }
   };
 
   return (
