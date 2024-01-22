@@ -15,7 +15,7 @@ export const POST = async (req: { json: () => any }) => {
       surname,
       username,
       email,
-      hashedPassword,
+      password: hashedPassword,
     });
 
     console.log([
