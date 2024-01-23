@@ -54,6 +54,15 @@ const SignUp = () => {
     const email = data.email;
     const password = data.password;
     const confirmPassword = data.confirmPassword;
+
+    console.log([
+      firstname,
+      surname,
+      username,
+      email,
+      password,
+      confirmPassword,
+    ]);
     try {
       const res = await fetch("api/signup", {
         method: "POST",
@@ -69,14 +78,14 @@ const SignUp = () => {
           confirmPassword,
         }),
       });
-
+      console.log("============ page");
       if (res.ok) {
         reset();
       } else {
-        console.log("user faile");
+        console.log("error occurred page");
       }
     } catch (error) {
-      console.log("failed");
+      console.log("failed page", error);
     }
   };
 
