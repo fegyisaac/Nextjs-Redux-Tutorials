@@ -55,14 +55,6 @@ const SignUp = () => {
     const password = data.password;
     const confirmPassword = data.confirmPassword;
 
-    console.log([
-      firstname,
-      surname,
-      username,
-      email,
-      password,
-      confirmPassword,
-    ]);
     try {
       const res = await fetch("api/signup", {
         method: "POST",
