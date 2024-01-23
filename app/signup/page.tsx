@@ -78,7 +78,6 @@ const SignUp = () => {
           confirmPassword,
         }),
       });
-      console.log("============ page");
       if (res.ok) {
         reset();
       } else {
