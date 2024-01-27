@@ -56,24 +56,19 @@ const SignUp = () => {
     const confirmPassword = data.confirmPassword;
 
     try {
-      const res = await fetch("api/signup", {
+      const res = await fetch("/app/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname,
-          surname,
-          username,
-          email,
-          password,
-          confirmPassword,
+          data
         }),
       });
       if (res.ok) {
         reset();
       } else {
-        console.log("error occurred page");
+        console.log("process.env.MONGODB_URI");
       }
     } catch (error) {
       console.log("failed page", error);
